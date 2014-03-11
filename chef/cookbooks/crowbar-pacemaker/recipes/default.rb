@@ -30,6 +30,8 @@ else
   node.default[:pacemaker][:crm][:no_quorum_policy] = "stop"
 end
 
+include_recipe "crowbar-pacemaker::stonith"
+
 include_recipe "pacemaker::default"
 
 include_recipe "crowbar-pacemaker::haproxy"
