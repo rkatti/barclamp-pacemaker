@@ -11,6 +11,8 @@ en:
           to make the GUI accessible.
         corosync:
           password: Password for hacluster user in Hawk
+        crm:
+          no_quorum_policy: Policy when cluster does not have quorum
         stonith_header: STONITH
         stonith_modes:
           manual: Configured manually
