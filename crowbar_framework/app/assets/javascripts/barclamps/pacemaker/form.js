@@ -47,9 +47,10 @@
     this.root.find('tbody tr').live('change', function(evt) {
       var elm = $(this);
       var id  = elm.data('id');
+      var key = id + "/params";
       var val = elm.find('input').val();
 
-      self.writeJson(id, val, "string");
+      self.writeJson(key, val, "string");
     });
 
     // Append new table row and update JSON on node alloc
@@ -57,7 +58,11 @@
       if (self._ignore_event(evt, data)) { return; }
 
       $(this).find('tbody').append(self.html.table_row.format(data.id, ''));
-      self.writeJson(data.id, "", "string");
+
+      var key = data.id + "/params";
+      var val = "";
+
+      self.writeJson(key, val, "string");
     });
 
     // Remove the table row and update JSON on node dealloc
@@ -65,7 +70,7 @@
       if (self._ignore_event(evt, data)) { return; }
 
       $(this).find('[data-id="{0}"]'.format(data.id)).remove();
-      self.removeJson(data.id, "", "string");
+      self.removeJson(data.id, null, "map");
     });
   };
 
